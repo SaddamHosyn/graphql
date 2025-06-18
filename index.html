@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>graphQL</title>
+
+    <script src="js/main.js" type="module" defer></script>
+
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/login.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+
+<body>
+    <div id="loginView">
+        <div id="loginBox">
+             <form id="loginForm">
+                <h2>Welcome</h2>
+                <label for="login">Email / ID:</label><br>
+                <input type="text" id="login" name="login" required><br><br>
+                <label for="password">Password:</label><br>
+                <input type="password" id="password" name="password" required><br><br>
+                <input type="submit" value="Submit">
+            </form>
+            <div id="error-message"></div>
+        </div>
+    </div>
+
+
+    <header id="nav-bar">
+        <div id="nav-title">graphQL</div>
+        <button id="logout-button">Logout</button>
+    </header>
+
+
+    <div id="mainView" style="display: none;">
+
+        <div id="rowA">
+            <div id="colA">
+                <h1>User Information</h1>
+                <div id="userInfo">
+                    <div id="userData"></div>
+                </div>
+            </div>
+
+            <div id="colB">
+                <h1>Experience</h1>
+                <div id="dataInfo">
+                    <div id="expData"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="rowB">
+            <div id="graphExp">
+            </div>
+        </div>
+
+
+
+        <div id="rowC">
+            <div id="colC">
+                <h2>Audit Ratio</h2>
+                <div id="auditInfo">
+                    <div id="auditRatio"></div>
+                </div>
+            </div>
+
+            <div id="colD">
+                <h2>Audit Done</h2>
+                <div id="auditUpDown">
+                    <div id="auditType"></div>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="rowD">
+            <div id="auditRatioBig"></div>
+            <div id="graphBar"></div>
+            <div id="graphPie"></div>
+        </div>
+
+        
+
+    </div>
+
+    <footer id="footer" hidden>
+        &copy; 2025
+        <a href="https://github.com/joon-kim" target="_blank" rel="noopener">
+          Joon Kim
+        </a>
+      </footer>
+</body>
+</html>
+
