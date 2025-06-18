@@ -1,97 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>graphQL</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Profile Dashboard</title>
+    <script src="scripts/app.js" type="module" defer></script>
+    <link rel="stylesheet" type="text/css" href="styles/auth.css" />
+    <link rel="stylesheet" type="text/css" href="styles/global.css" />
 
-    <script src="js/main.js" type="module" defer></script>
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  </head>
 
-    <link rel="stylesheet" type="text/css" href="css/main.css">
-    <link rel="stylesheet" type="text/css" href="css/login.css">
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-</head>
+  <body>
+    <!-- Authentication Section -->
+    <section id="authContainer" class="auth-wrapper">
+      <div class="login-card">
+        <form id="authForm" class="auth-form">
+          <h1>Student Portal</h1>
+          <div class="input-group">
+            <label for="username">Username / Email:</label>
+            <input type="text" id="username" name="username" required />
+          </div>
+          <div class="input-group">
+            <label for="userPassword">Password:</label>
+            <input
+              type="password"
+              id="userPassword"
+              name="userPassword"
+              required
+            />
+          </div>
+          <button type="submit" class="submit-btn">Login</button>
+        </form>
+        <div id="authError" class="error-display"></div>
+      </div>
+    </section>
 
-<body>
-    <div id="loginView">
-        <div id="loginBox">
-             <form id="loginForm">
-                <h2>Welcome</h2>
-                <label for="login">Email / ID:</label><br>
-                <input type="text" id="login" name="login" required><br><br>
-                <label for="password">Password:</label><br>
-                <input type="password" id="password" name="password" required><br><br>
-                <input type="submit" value="Submit">
-            </form>
-            <div id="error-message"></div>
-        </div>
-    </div>
+    <!-- Navigation Header -->
+    <nav id="topNavigation" class="navigation-bar">
+      <div class="nav-brand">Student Dashboard</div>
+      <button id="signOutBtn" class="logout-btn">Sign Out</button>
+    </nav>
 
-
-    <header id="nav-bar">
-        <div id="nav-title">graphQL</div>
-        <button id="logout-button">Logout</button>
-    </header>
-
-
-    <div id="mainView" style="display: none;">
-
-        <div id="rowA">
-            <div id="colA">
-                <h1>User Information</h1>
-                <div id="userInfo">
-                    <div id="userData"></div>
-                </div>
-            </div>
-
-            <div id="colB">
-                <h1>Experience</h1>
-                <div id="dataInfo">
-                    <div id="expData"></div>
-                </div>
-            </div>
-        </div>
-
-        <div id="rowB">
-            <div id="graphExp">
-            </div>
+    <!-- Main Dashboard -->
+    <main id="dashboardContainer" style="display: none">
+      <!-- Profile Overview -->
+      <section class="profile-section">
+        <div class="info-card">
+          <h2>Profile Information</h2>
+          <div id="profileDetails" class="profile-content"></div>
         </div>
 
+        <div class="info-card">
+          <h2>Experience Points</h2>
+          <div id="experienceDetails" class="experience-content"></div>
+        </div>
+      </section>
 
+      <!-- XP Progress Visualization -->
+      <section class="chart-section">
+        <div id="progressChart" class="chart-container"></div>
+      </section>
 
-        <div id="rowC">
-            <div id="colC">
-                <h2>Audit Ratio</h2>
-                <div id="auditInfo">
-                    <div id="auditRatio"></div>
-                </div>
-            </div>
-
-            <div id="colD">
-                <h2>Audit Done</h2>
-                <div id="auditUpDown">
-                    <div id="auditType"></div>
-                </div>
-            </div>
+      <!-- Audit Information -->
+      <section class="audit-section">
+        <div class="info-card">
+          <h3>Audit Performance</h3>
+          <div id="auditMetrics" class="audit-content"></div>
         </div>
 
-
-        <div id="rowD">
-            <div id="auditRatioBig"></div>
-            <div id="graphBar"></div>
-            <div id="graphPie"></div>
+        <div class="info-card">
+          <h3>Audit Statistics</h3>
+          <div id="auditStats" class="audit-stats-content"></div>
         </div>
+      </section>
 
-        
+      <!-- Analytics Dashboard -->
+      <section class="analytics-section">
+        <div id="auditRatioDisplay" class="ratio-display"></div>
+        <div id="barChartContainer" class="chart-container"></div>
+        <div id="pieChartContainer" class="chart-container"></div>
+      </section>
+    </main>
 
-    </div>
-
-    <footer id="footer" hidden>
-        &copy; 2025
-        <a href="https://github.com/joon-kim" target="_blank" rel="noopener">
-          Joon Kim
-        </a>
-      </footer>
-</body>
+    <footer id="pageFooter" class="site-footer" hidden>
+      &copy; 2025
+      <a
+        href="https://github.com/student-profile"
+        target="_blank"
+        rel="noopener"
+      >
+        Profile Dashboard
+      </a>
+    </footer>
+  </body>
 </html>
-
