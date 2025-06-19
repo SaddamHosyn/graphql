@@ -7,8 +7,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (authToken) {
         showDashboard();
         populateDashboard();
+        showNavigationAndFooter();
     } else {
         showAuthView();
+        hideNavigationAndFooter();
     }
 
     const authForm = document.getElementById('authForm');
@@ -29,6 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.log("Authentication successful")
                 showDashboard();
                 populateDashboard();
+                showNavigationAndFooter();
             }
         });
     }
@@ -37,7 +40,34 @@ document.addEventListener('DOMContentLoaded', () => {
     if (signOutButton) {
         signOutButton.addEventListener('click', () => {
             performLogout();
+            hideNavigationAndFooter();
             console.log("Sign out successful")
         });
     }
 });
+
+function showNavigationAndFooter() {
+    const navigation = document.getElementById('topNavigation');
+    const footer = document.getElementById('pageFooter');
+    
+    if (navigation) {
+        navigation.style.display = 'flex';
+    }
+    
+    if (footer) {
+        footer.style.display = 'flex';
+    }
+}
+
+function hideNavigationAndFooter() {
+    const navigation = document.getElementById('topNavigation');
+    const footer = document.getElementById('pageFooter');
+    
+    if (navigation) {
+        navigation.style.display = 'none';
+    }
+    
+    if (footer) {
+        footer.style.display = 'none';
+    }
+}

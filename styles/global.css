@@ -2,8 +2,8 @@
     --primary-bg: #3d5482;
     --secondary-bg: #FFFFFF;
     --text-primary: #858f64;
-    --accent-color: #B79AE3;
-    --secondary-accent: #6216d4;
+    --accent-color: #ffffff;
+    --secondary-accent: #d41664;
     --text-secondary: #4B3B53;
 }
 
@@ -16,18 +16,26 @@ html, body {
     font-family: Arial, sans-serif;
 }
 
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
 #dashboardContainer {
     background-color: #4c8c87;
     display: flex;
     flex-direction: column;
     gap: 20px;
     padding: 20px;
+    flex: 1;
+    padding-bottom: 40px;
 }
 
 .profile-section, .chart-section, .audit-section {
     display: flex;
     gap: 24px;
-    background: #C8B2EA;
+    background: #44986a;
     border: 2px solid #D4EAB2;            
     border-radius: 12px;                
     margin: 0 auto;                    
@@ -44,7 +52,7 @@ html, body {
     align-items: center;
     justify-content: center;
     gap: 7px;
-    background: #C8B2EA;
+    background: #207b52;
     border: 2px solid #D4EAB2;            
     border-radius: 12px;                
     margin: 0 auto;                    
@@ -70,12 +78,12 @@ html, body {
 .info-card {
     text-align: center;
     gap: 24px;
-    background: #C8B2EA;              
+    background: #4b3b53;              
     margin: 0 auto;                    
     padding: 16px;      
     width: calc(100vw - 9vw);  
     max-width: 900px;      
-    border: 3px solid #9F6BEA;
+    border: 3px solid #eee;
     border-radius: 8px;                
     transition: box-shadow 0.2s;
 }
@@ -152,17 +160,20 @@ html, body {
 }
 
 .progress-chart-wrapper svg path {
-    stroke: var(--secondary-accent);
-    stroke-width: 3;
+    stroke: url(#progressGradient);
+    stroke-width: 8;
     fill: none;
+    stroke-linecap:square;
 }
 
 .progress-chart-wrapper svg .chart-line {
-    stroke: var(--secondary-accent);
+    stroke: url(#progressGradient);
+    stroke-width: 8;
 }
 
 .progress-chart-wrapper svg .grid-line {
-    stroke: #eee;
+    stroke: #160404;
+    stroke-width: 2;
 }
 
 .progress-chart-wrapper svg .chart-text {
@@ -210,6 +221,9 @@ html, body {
     background-color: #9E6BEA;
     color: #333;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
 .nav-brand {
@@ -235,12 +249,12 @@ html, body {
     justify-content: center;          
     align-items: center;              
     padding: 10px 20px;
-    background-color: #9E6BEA;        
-    color: #333;
+    background-color: #1c4866;        
+    color: #ffffff;
     box-shadow: 0px -2px 6px rgba(0, 0, 0, 0.06);
     font-size: 1rem;
     min-height: 24px;
-    margin-top: 30px;
+    margin-top: auto;
 }
 
 .site-footer a {
@@ -254,10 +268,6 @@ html, body {
 .site-footer a:hover {
     color: var(--secondary-accent);
     text-decoration: underline;
-}
-
-.site-footer[hidden] {
-    display: none !important;
 }
 
 /* Responsive Design */

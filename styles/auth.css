@@ -50,10 +50,42 @@
     margin-bottom: 15px;
     border-radius: 5px;
     border: 1px solid #6216d46f;
-    background-color: #C8B2EA;
-    color: #6216d4;
+    background-color: #76a13c;
+    color: #ffffff;
     cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
+.submit-btn:hover {
+    background-color: #5e8230;
+    color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transform: translateY(-1px);
+}
+
+.submit-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.submit-btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(118, 161, 60, 0.3);
+}
+
+.submit-btn:disabled {
+    background-color: #cccccc;
+    color: #666666;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
 
 .error-display {
     color: rgb(210, 40, 204);

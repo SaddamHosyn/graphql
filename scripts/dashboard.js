@@ -1,5 +1,5 @@
 import { loadUserData } from './dataService.js';
-import { generateProgressChart, generateBarChart, generatePieChart } from './charts/visualizations.js';
+import { generateProgressChart, generateBarChart, generatePieChart } from '../charts/visualization.js';
 
 export async function populateDashboard() {
     try {
@@ -65,7 +65,26 @@ function renderProgressVisualization(xpHistory) {
     const chartContainer = document.getElementById('progressChart');
     if (!chartContainer) return;
     
-    chartContainer.innerHTML = generateProgressChart(xpHistory);
+    // Generate the base chart SVG
+    let chartSVG = generateProgressChart(xpHistory);
+    
+    // Add gradient definition to the SVG
+    if (chartSVG.includes('<svg')) {
+        // Find the opening svg tag and add the gradient definition after it
+        const svgOpenTag = chartSVG.match(/<svg[^>]*>/)[0];
+        const gradientDefs = `
+            <defs>
+                <linearGradient id="progressGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#B79AE3" />
+                    <stop offset="50%" stop-color="#d41664" />
+                    <stop offset="100%" stop-color="#3d5482" />
+                </linearGradient>
+            </defs>`;
+        
+        chartSVG = chartSVG.replace(svgOpenTag, svgOpenTag + gradientDefs);
+    }
+    
+    chartContainer.innerHTML = chartSVG;
     chartContainer.classList.add('progress-chart-wrapper');
 }
 
