@@ -93,3 +93,12 @@
     margin-top: 10px;
     font-size: 14px;
 }
+  
+.toggle-password {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 4px;
+  gap: 3px;
+  font-size: 14px;
+  color: #ece6e6;
+}
