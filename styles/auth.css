@@ -86,7 +86,6 @@
     box-shadow: none;
 }
 
-
 .error-display {
     color: rgb(210, 40, 204);
     text-align: center;
@@ -95,10 +94,10 @@
 }
   
 .toggle-password {
-  display: inline-flex;
-  align-items: center;
-  margin-top: 4px;
-  gap: 3px;
-  font-size: 14px;
-  color: #ece6e6;
+    display: inline-flex;
+    align-items: center;
+    margin-top: 4px;
+    gap: 3px;
+    font-size: 14px;
+    color: #ece6e6;
 }
