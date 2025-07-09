@@ -81,3 +81,23 @@ export function showAuthView() {
     document.getElementById('dashboardContainer').style.display = 'none';
     document.getElementById('pageFooter').hidden = true;
 }
+
+
+// Password toggle functionality
+export function initializePasswordToggle() {
+    const togglePassword = document.getElementById('togglePassword');
+    const passwordField = document.getElementById('userPassword');
+    
+    if (togglePassword && passwordField) {
+        togglePassword.addEventListener('change', function() {
+            if (this.checked) {
+                passwordField.type = 'text';
+            } else {
+                passwordField.type = 'password';
+            }
+        });
+    }
+}
+
+// Call this function when the page loads
+document.addEventListener('DOMContentLoaded', initializePasswordToggle);

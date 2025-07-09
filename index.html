@@ -16,27 +16,20 @@
     <section id="authContainer" class="auth-wrapper">
       <div class="login-card">
         <form id="authForm" class="auth-form">
-          <h1>CampusConnect
-          </h1>
+          <h1>CampusConnect</h1>
           <div class="input-group">
             <label for="username">Username / Email:</label>
             <input type="text" id="username" name="username" required />
           </div>
        
-
-<div class="input-group">
-  <label for="userPassword">Password:</label>
-  <input type="password" id="userPassword" name="userPassword" required />
-  <div class="toggle-password">
-    <input type="checkbox" id="togglePassword" />
-    <label for="togglePassword">Show Password</label>
-  </div>
-</div>
-
-
-
-
-
+          <div class="input-group">
+            <label for="userPassword">Password:</label>
+            <input type="password" id="userPassword" name="userPassword" required />
+            <div class="toggle-password">
+              <input type="checkbox" id="togglePassword" />
+              <label for="togglePassword">Show Password</label>
+            </div>
+          </div>
 
           <button type="submit" class="submit-btn">Login</button>
         </form>
@@ -44,50 +37,72 @@
       </div>
     </section>
 
+   
     <!-- Navigation Header -->
-    <nav id="topNavigation" class="navigation-bar" style="display: none">
-      <div class="nav-brand">Study Verse</div>
-      <button id="signOutBtn" class="logout-btn">Sign Out</button>
-    </nav>
+<nav id="topNavigation" class="navigation-bar" style="display: none">
+  <div class="nav-spacer"></div>
+  <div class="nav-brand">
+    <span class="brand-text">Study Verse</span>
+  </div>
+  <button id="signOutBtn" class="logout-btn">
+    <span class="btn-text">Log Out</span>
+    <span class="btn-icon">→</span>
+  </button>
+</nav>
+
 
     <!-- Main Dashboard -->
-<main id="dashboardContainer" style="display: none">
-  <div id="singleDashboardBox" class="draggable-box">
-    <h2>Profile Information</h2>
-    <div id="profileDetails" class="dashboard-section"></div>
+    <main id="dashboardContainer" style="display: none">
+      <div id="singleDashboardBox" class="draggable-box">
+        
+        <!-- Two-by-Two Grid Container -->
+        <div class="info-grid-container">
+          <!-- Left Side: Profile & Experience -->
+          <div class="info-grid-left">
+            <div class="info-grid-item">
+              <h2>Profile Information</h2>
+              <div id="profileDetails" class="dashboard-section"></div>
+            </div>
+            
+            <div class="info-grid-item">
+              <h2>Experience Points</h2>
+              <div id="experienceDetails" class="dashboard-section"></div>
+            </div>
+          </div>
+          
+          <!-- Right Side: Audit Performance & Statistics -->
+          <div class="info-grid-right">
+            <div class="info-grid-item">
+              <h3>Audit Performance</h3>
+              <div id="auditMetrics" class="dashboard-section"></div>
+            </div>
+            
+            <div class="info-grid-item">
+              <h3>Audit Statistics</h3>
+              <div id="auditStats" class="dashboard-section"></div>
+            </div>
+          </div>
+        </div>
 
-    <h2>Experience Points</h2>
-    <div id="experienceDetails" class="dashboard-section"></div>
+        <!-- Keep Audit Ratio separate as requested -->
+        <h3>Audit Ratio</h3>
+        <div id="auditRatioDisplay" class="ratio-display"></div>
 
-    <h3>Audit Performance</h3>
-    <div id="auditMetrics" class="dashboard-section"></div>
+        <!-- Charts remain untouched -->
+        <h3>Bar Chart</h3>
+        <div id="barChartContainer" class="chart-container"></div>
 
-    <h3>Audit Statistics</h3>
-    <div id="auditStats" class="dashboard-section"></div>
+        <h3>Progress Chart</h3>
+        <div id="progressChart" class="chart-container"></div>
 
-    <h3>Progress Chart</h3>
-    <div id="progressChart" class="chart-container"></div>
-
-    <h3>Audit Ratio</h3>
-    <div id="auditRatioDisplay" class="ratio-display"></div>
-
-    <h3>Bar Chart</h3>
-    <div id="barChartContainer" class="chart-container"></div>
-
-    <h3>Pie Chart</h3>
-    <div id="pieChartContainer" class="chart-container"></div>
-  </div>
-</main>
-
-
+        <h3>Pie Chart</h3>
+        <div id="pieChartContainer" class="chart-container"></div>
+      </div>
+    </main>
 
     <footer id="pageFooter" class="site-footer" style="display: none">
       &copy; 2025
-      <a
-        href="https://github.com/student-profile"
-        target="_blank"
-        rel="noopener"
-      >
+      <a href="https://github.com/student-profile" target="_blank" rel="noopener">
         Profile Dashboard
       </a>
     </footer>
