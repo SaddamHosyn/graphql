@@ -5,11 +5,11 @@
     width: 100vw;
     height: 100vh;
     z-index: 10;
-    background-color: #C8B2EA;
-    background-image: url('/assets/vb.svg');
-    background-size: 100% 100%;
-    background-position: center;
-    background-repeat: no-repeat;
+    background-color: #C8B2EA !important;
+    background-image: url('../assets/vb.svg') !important;
+    background-size: 100% 100% !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
     display: flex;
     justify-content: center;
     align-items: center;

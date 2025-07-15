@@ -53,7 +53,6 @@ footer {
 
 /* Authentication page styling */
 .auth-wrapper {
-    background-color: #3d5482;
     color: #60a5fa;
     min-height: 100vh;
     width: 100%;
@@ -66,8 +65,6 @@ footer {
     left: 0;
     width: 100vw;
     height: 100vh;
-    /* Ensure background extends beyond viewport */
-    background: linear-gradient(135deg, #3d5482 0%, #2d3a56 100%);
     /* Prevent any white space showing */
     overscroll-behavior: none;
 }
@@ -79,7 +76,7 @@ footer {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    padding: 20px;
+    padding: 70px;
     flex: 1;
     padding-bottom: 40px;
     align-items: center;
@@ -973,7 +970,6 @@ section, main, nav, footer {
 
 /* Specific container background overrides */
 #authContainer {
-    background: linear-gradient(135deg, #3d5482 0%, #2d3a56 100%);
     width: 100vw;
     height: 100vh;
     position: fixed;
