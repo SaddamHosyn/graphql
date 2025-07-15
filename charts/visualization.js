@@ -1,8 +1,6 @@
-
-
 export function generateProgressChart(xpTransactions, options = {}) {
     if (!xpTransactions || xpTransactions.length === 0) {
-        return '<p class="no-data">No experience data available</p>';
+        return generateNoDataHTML('No experience data available');
     }
 
     const sortedTransactions = [...xpTransactions].sort((a, b) =>
@@ -403,7 +401,7 @@ export function generatePieChart(auditTransactions, options = {}) {
     };
 
     if (total === 0) {
-        return '<p class="no-data">No audit data available</p>';
+        return generateNoDataHTML('No audit data available');
     }
 
     const upPercentage = Math.round((upCount / total) * 100);
@@ -867,4 +865,124 @@ Percentage: ${Math.round((value / values.reduce((a,b) => a+b, 0)) * 100)}%</titl
             </g>
         </svg>
     `;
+}
+
+// Helper function to generate no-data HTML
+function generateNoDataHTML(message) {
+    return `<p class="no-data">${message}</p>`;
+}
+
+// Chart utility functions
+export function createChartContainer(title, chartContent, legendItems = []) {
+    let legendHTML = '';
+    if (legendItems.length > 0) {
+        legendHTML = `
+            <div class="chart-legend">
+                ${legendItems.map(item => `
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: ${item.color};"></div>
+                        <span>${item.label}</span>
+                    </div>
+                `).join('')}
+            </div>
+        `;
+    }
+    
+    return `
+        <div class="chart-container">
+            <div class="chart-title">${title}</div>
+            <div class="chart-wrapper">
+                ${chartContent}
+            </div>
+            ${legendHTML}
+        </div>
+    `;
+}
+
+export function wrapChartWithContainer(chartHTML, title, legendItems = []) {
+    if (chartHTML.includes('no-data')) {
+        return chartHTML; // Return as-is if it's a no-data message
+    }
+    return createChartContainer(title, chartHTML, legendItems);
+}
+
+// Template utilities for working with HTML templates
+export function useChartTemplate(templateId, title, chartContent, legendItems = []) {
+    const template = document.getElementById(templateId);
+    if (!template) {
+        console.warn(`Template ${templateId} not found`);
+        return createChartContainer(title, chartContent, legendItems);
+    }
+    
+    const clone = template.cloneNode(true);
+    clone.id = `${templateId}_${Date.now()}`;
+    clone.classList.remove('template');
+    clone.classList.add('cloned');
+    clone.style.display = 'flex';
+    
+    // Update title if provided
+    if (title) {
+        const titleElement = clone.querySelector('.chart-title');
+        if (titleElement) titleElement.textContent = title;
+    }
+    
+    // Insert chart content
+    const wrapper = clone.querySelector('.chart-wrapper');
+    if (wrapper) wrapper.innerHTML = chartContent;
+    
+    // Update legend if provided
+    if (legendItems.length > 0) {
+        const legend = clone.querySelector('.chart-legend');
+        if (legend) {
+            legend.innerHTML = legendItems.map(item => `
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: ${item.color};"></div>
+                    <span>${item.label}</span>
+                </div>
+            `).join('');
+        }
+    }
+    
+    return clone.outerHTML;
+}
+
+// Enhanced chart generation with template support
+export function generateProgressChartWithTemplate(xpTransactions, options = {}) {
+    const chartSVG = generateProgressChart(xpTransactions, options);
+    
+    if (chartSVG.includes('no-data')) {
+        return chartSVG;
+    }
+    
+    return useChartTemplate('progressChartTemplate', 'XP Progress Journey', chartSVG);
+}
+
+export function generatePieChartWithTemplate(auditTransactions, options = {}) {
+    const chartSVG = generatePieChart(auditTransactions, options);
+    
+    if (chartSVG.includes('no-data')) {
+        return chartSVG;
+    }
+    
+    const legendItems = [
+        { color: '#4ECDC4', label: 'Given Audits' },
+        { color: '#FF6B9D', label: 'Received Audits' }
+    ];
+    
+    return useChartTemplate('pieChartTemplate', 'Audit XP Distribution', chartSVG, legendItems);
+}
+
+export function generateBarChartWithTemplate(auditMetrics, options = {}) {
+    const chartSVG = generateBarChart(auditMetrics, options);
+    
+    if (chartSVG.includes('no-data')) {
+        return chartSVG;
+    }
+    
+    const legendItems = [
+        { color: '#FF6B9D', label: 'Given Audit XP' },
+        { color: '#4ECDC4', label: 'Received Audit XP' }
+    ];
+    
+    return useChartTemplate('barChartTemplate', 'Audit XP Comparison', chartSVG, legendItems);
 }

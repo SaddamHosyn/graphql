@@ -47,27 +47,26 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function showNavigationAndFooter() {
-    const navigation = document.getElementById('topNavigation');
-    const footer = document.getElementById('pageFooter');
-    
-    if (navigation) {
-        navigation.style.display = 'flex';
-    }
-    
-    if (footer) {
-        footer.style.display = 'flex';
-    }
+    showElements(['topNavigation', 'pageFooter']);
 }
 
 function hideNavigationAndFooter() {
-    const navigation = document.getElementById('topNavigation');
-    const footer = document.getElementById('pageFooter');
-    
-    if (navigation) {
-        navigation.style.display = 'none';
+    hideElements(['topNavigation', 'pageFooter']);
+}
+
+// Visibility utility functions
+function setVisibility(elementId, isVisible) {
+    const element = document.getElementById(elementId);
+    if (element) {
+        element.classList.toggle('hidden', !isVisible);
+        element.classList.toggle('visible', isVisible);
     }
-    
-    if (footer) {
-        footer.style.display = 'none';
-    }
+}
+
+function showElements(elementIds) {
+    elementIds.forEach(id => setVisibility(id, true));
+}
+
+function hideElements(elementIds) {
+    elementIds.forEach(id => setVisibility(id, false));
 }

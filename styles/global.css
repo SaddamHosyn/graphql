@@ -1,21 +1,81 @@
-html, body {
+html {
     height: 100%;
     margin: 0;
     padding: 0;
-    background-color: #3d5482;
-    color:#60a5fa;
     font-family: Arial, sans-serif;
+    /* Set a default background color to prevent white overscroll */
+    background-color: #2d3a56;
+    /* Prevent overscroll bounce effect */
+    overflow: hidden;
+    /* Prevent overscroll bounce on mobile */
+    overscroll-behavior: none;
+    /* Set consistent background for any overscroll areas */
+    background: linear-gradient(135deg, #2d3a56 0%, #3d5482 100%);
 }
 
 body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    align-items: center;
+    /* Enable scrolling on body */
+    overflow-y: auto;
+    overflow-x: hidden;
+    /* Set background color to match default theme */
+    background-color: #562d38;
+    /* Prevent overscroll bounce on mobile */
+    overscroll-behavior: none;
+    /* Set consistent background */
+    background: linear-gradient(135deg, #2d3a56 0%, #3d5482 100%);
 }
 
+/* Layout wrapper for proper footer positioning */
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+/* Navigation should not grow */
+nav {
+    flex-shrink: 0;
+}
+
+/* Footer should stick to bottom */
+footer {
+    flex-shrink: 0;
+    margin-top: auto;
+}
+
+/* Authentication page styling */
+.auth-wrapper {
+    background-color: #3d5482;
+    color: #60a5fa;
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Force full viewport coverage */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    /* Ensure background extends beyond viewport */
+    background: linear-gradient(135deg, #3d5482 0%, #2d3a56 100%);
+    /* Prevent any white space showing */
+    overscroll-behavior: none;
+}
+
+/* Dashboard page styling */
 #dashboardContainer {
     background-color: #4c8c87;
+    color: #2d3a56;
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -25,6 +85,19 @@ body {
     align-items: center;
     width: 100%;
     max-width: 1200px;
+    margin: 0 auto;
+    /* Ensure it grows to fill available space */
+    flex-grow: 1;
+   
+    /* Prevent overscroll */
+    overscroll-behavior: none;
+}
+
+/* Navigation styling */
+.navigation-bar {
+    background-color: #2d3a56;
+    color: #ffffff;
+    width: 100%;
 }
 
 .profile-section, .chart-section, .audit-section {
@@ -177,6 +250,80 @@ body {
     opacity: 0.6;
 }
 
+/* Dashboard content styling - override login page colors */
+#dashboardContainer p {
+    color: #2d3a56;
+}
+
+#dashboardContainer .info-grid-item p {
+    color: #2d3a56;
+}
+
+#dashboardContainer .dashboard-section {
+    color: #2d3a56;
+}
+
+#dashboardContainer .dashboard-section p {
+    color: #2d3a56;
+    font-weight: 500;
+}
+
+#dashboardContainer .dashboard-section span {
+    color: #1a1a1a;
+    font-weight: 600;
+}
+
+/* Profile details styling */
+.profile-name, .profile-username, .profile-id {
+    color: #1a1a1a !important;
+    font-weight: 600;
+}
+
+/* Audit information styling */
+.audit-ratio, .audit-up, .audit-down {
+    color: #1a1a1a !important;
+    font-weight: 600;
+}
+
+/* Audit stats styling */
+.total-audits, .given-audits, .received-audits {
+    color: #1a1a1a !important;
+    font-weight: 600;
+}
+
+/* Experience details styling */
+.total-xp {
+    color: #1a1a1a !important;
+    font-weight: 600;
+}
+
+/* Ratio display styling */
+.ratio-display {
+    color: #2d3a56;
+}
+
+.ratio-value {
+    color: #1a1a1a !important;
+    font-weight: 700;
+}
+
+.ratio-label {
+    color: #2d3a56;
+    font-weight: 500;
+}
+
+/* Chart titles in dashboard */
+#dashboardContainer h3 {
+    color: #2d3a56;
+    font-weight: 600;
+    margin: 1rem 0 0.5rem 0;
+}
+
+#dashboardContainer .chart-title {
+    color: #2d3a56 !important;
+    font-weight: 600;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .info-grid-container {
@@ -186,6 +333,48 @@ body {
     
     .info-grid-left, .info-grid-right {
         width: 100%;
+    }
+    
+    html, body {
+        /* Prevent elastic scroll on iOS */
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior-y: none;
+        /* Ensure consistent background */
+        background-color: #2d3a56;
+    }
+    
+    .auth-wrapper {
+        /* Ensure full coverage on mobile */
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        overscroll-behavior: none;
+    }
+    
+    #dashboardContainer {
+        /* Prevent overscroll on mobile */
+        overscroll-behavior: none;
+        /* Ensure proper height */
+        min-height: 100vh;
+    }
+}
+
+/* Mobile footer centering */
+@media (max-width: 768px) {
+    .site-footer {
+        flex-direction: column;
+        gap: 4px;
+        padding: 12px 0;
+    }
+    
+    #pageFooter {
+        padding: 12px 0;
+        text-align: center !important;
+    }
+    
+    .site-footer a {
+        margin-left: 0;
+        margin-top: 4px;
     }
 }
 
@@ -227,6 +416,7 @@ body {
     margin: 15px 0;
     box-shadow: 0 10px 30px rgba(0,0,0,0.3);
     transition: all 0.3s ease;
+    position: relative;
 }
 
 .progress-chart-wrapper:hover {
@@ -279,6 +469,7 @@ body {
     background: linear-gradient(135deg, rgba(44, 62, 80, 0.1) 0%, rgba(52, 73, 94, 0.1) 100%);
     border-radius: 20px;
     margin: 10px 0;
+    position: relative;
 }
 
 .bar-chart-wrapper svg {
@@ -395,26 +586,29 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 30px; /* Increased from 10px 20px */
+    padding: 20px 20px; /* Reduced padding to prevent overflow */
     background: linear-gradient(135deg, #31076f 0%, #31a194 50%, #8e456a 100%);
     background-size: 200% 200%;
     animation: gradientShift 4s ease infinite;
     color: #333;
     box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15), 0 0 25px rgba(111, 111, 8, 0.4);
-    position: sticky;
+    position: relative;
     top: 0;
     z-index: 100;
     width: 100%;
-    overflow: hidden;
+    overflow: visible; /* Changed from hidden to visible */
     min-height: 70px; /* Added minimum height */
+    flex-shrink: 0;
+    box-sizing: border-box; /* Ensure padding is included in width */
 }
 
-/* Bigger spacer to balance the layout */
+/* Smaller spacer to prevent button overflow */
 .nav-spacer {
-    width: 120px; /* Increased from 80px */
+    width: 80px; /* Reduced from 120px */
+    flex-shrink: 0;
 }
 
-/* Bigger centered brand */
+/* Centered brand with proper flex */
 .nav-brand {
     font-size: 36px; /* Increased from 28px */
     font-weight: bold;
@@ -422,6 +616,8 @@ body {
     text-align: center;
     flex: 1;
     letter-spacing: 1px; /* Added for better spacing */
+    min-width: 0; /* Allow shrinking if needed */
+    overflow: hidden; /* Prevent text overflow */
 }
 
 .brand-text {
@@ -447,14 +643,14 @@ body {
     animation: textShine 3s infinite;
 }
 
-/* Bigger logout button */
+/* Logout button with proper margins */
 .logout-btn {
     background: linear-gradient(135deg, #d41664 0%, #b91450 50%, #d41664 100%);
     background-size: 200% 200%;
     color: white;
     border: none;
     border-radius: 30px; /* Increased border radius */
-    padding: 15px 25px; /* Increased from 10px 16px */
+    padding: 15px 20px; /* Reduced padding to prevent overflow */
     cursor: pointer;
     font-weight: bold;
     font-size: 16px; /* Added explicit font size */
@@ -467,6 +663,9 @@ body {
     box-shadow: 0 6px 20px rgba(212, 22, 100, 0.4);
     animation: buttonFloat 3s ease-in-out infinite;
     min-height: 50px; /* Added minimum height */
+    margin-right: 10px; /* Add margin to prevent edge clipping */
+    flex-shrink: 0; /* Prevent button from shrinking */
+    white-space: nowrap; /* Prevent text wrapping */
 }
 
 .logout-btn::before {
@@ -544,119 +743,304 @@ body {
 /* Updated Responsive Design */
 @media (max-width: 768px) {
     .navigation-bar {
-        padding: 15px 25px; /* Reduced but still bigger than original */
+        padding: 15px 15px; /* Reduced padding for mobile */
         min-height: 60px;
     }
     
     .nav-brand {
-        font-size: 30px; /* Still bigger than original */
+        font-size: 28px; /* Reduced for mobile */
     }
     
     .nav-spacer {
-        width: 100px;
+        width: 60px; /* Reduced for mobile */
     }
     
     .logout-btn {
-        padding: 12px 20px;
-        font-size: 15px;
+        padding: 12px 16px; /* Reduced padding for mobile */
+        font-size: 14px;
         min-height: 45px;
+        margin-right: 5px; /* Reduced margin for mobile */
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 1024px) {
     .navigation-bar {
-        padding: 12px 20px;
-        min-height: 55px;
+        padding: 18px 20px;
     }
     
     .nav-brand {
-        font-size: 26px; /* Still bigger than original */
+        font-size: 32px;
+    }
+    
+    .nav-spacer {
+        width: 70px;
     }
     
     .logout-btn {
-        padding: 10px 16px;
-        font-size: 14px;
-        min-height: 40px;
+        padding: 14px 18px;
+        font-size: 15px;
+        margin-right: 8px;
+    }
+}
+
+/* Very small screens - prioritize button visibility */
+@media (max-width: 360px) {
+    .navigation-bar {
+        padding: 10px 8px;
+        min-height: 50px;
+    }
+    
+    .nav-brand {
+        font-size: 20px;
+    }
+    
+    .nav-spacer {
+        width: 30px;
+    }
+    
+    .logout-btn {
+        padding: 8px 12px;
+        font-size: 12px;
+        min-height: 36px;
+        gap: 4px;
+    }
+    
+    .btn-text {
+        font-size: 12px;
     }
     
     .btn-icon {
-        font-size: 16px;
+        font-size: 12px;
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/* Footer styling for dashboard */
 .site-footer {
-    display: flex;
-    justify-content: center;          
-    align-items: center;              
-    padding: 10px 20px;
-    background-color: #1c4866;        
+    background-color: #2d3a56;
     color: #ffffff;
-    box-shadow: 0px -2px 6px rgba(0, 0, 0, 0.06);
-    font-size: 1rem;
-    min-height: 24px;
-    margin-top: auto;
+    padding: 15px 0;
+    text-align: center;
     width: 100%;
+    margin-top: auto;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
 }
 
 .site-footer a {
-    color: #ffffff;
+    color: #a77724;
     text-decoration: none;
-    font-weight: bold;
-    margin-left: 6px;
-    transition: color 0.2s;
+    margin-left: 8px;
 }
 
 .site-footer a:hover {
-    color: #d41664;
+    color: #ffffff;
     text-decoration: underline;
 }
 
-/* Responsive Design */
-@media (max-width: 600px) {
-    .profile-section, .audit-section, .analytics-section {
-        width: 95%;
-        max-width: 98vw;
-        padding: 8px;
-        flex-direction: column;
+/* Ensure footer always stays at bottom */
+.site-footer.visible {
+    margin-top: auto;
+    align-self: flex-end;
+}
+
+/* Force sticky footer behavior */
+body:not(.auth-wrapper) {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+body:not(.auth-wrapper) > *:last-child {
+    margin-top: auto;
+}
+
+/* Visibility utility classes */
+.hidden {
+    display: none !important;
+}
+
+.visible {
+    display: flex !important;
+}
+
+.auth-container.hidden {
+    display: none !important;
+}
+
+.auth-container.visible {
+    display: flex !important;
+}
+
+.navigation-bar.hidden {
+    display: none !important;
+}
+
+.navigation-bar.visible {
+    display: flex !important;
+}
+
+.dashboard-container.hidden {
+    display: none !important;
+}
+
+.dashboard-container.visible {
+    display: flex !important;
+}
+
+.footer-container.hidden {
+    display: none !important;
+}
+
+.footer-container.visible {
+    display: flex !important;
+}
+
+/* Chart wrapper specific classes */
+.progress-chart-wrapper {
+    position: relative;
+}
+
+.pie-chart-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bar-chart-wrapper {
+    position: relative;
+}
+
+/* Mobile specific overscroll fixes */
+@media (max-width: 768px) {
+    html, body {
+        /* Prevent elastic scroll on iOS */
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior-y: none;
+        /* Ensure consistent background */
+        background-color: #2d3a56;
     }
     
-    .ratio-value.ratio-active {
-        font-size: 2.5rem;
+    .auth-wrapper {
+        /* Ensure full coverage on mobile */
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        overscroll-behavior: none;
     }
     
-    .ratio-value.ratio-na {
-        font-size: 1.8rem;
+    #dashboardContainer {
+        /* Prevent overscroll on mobile */
+        overscroll-behavior: none;
+        /* Ensure proper height */
+        min-height: 100vh;
+    }
+}
+
+/* Webkit specific fixes for Safari */
+@supports (-webkit-overflow-scrolling: touch) {
+    html {
+        background-color: #2d3a56 !important;
     }
     
-    .ratio-label {
-        font-size: 1rem;
+    body {
+        background-color: #2d3a56 !important;
+        -webkit-overflow-scrolling: touch;
     }
-    
-    .progress-chart-wrapper {
-        max-width: 100%;
-    }
+}
+
+/* Universal background fix */
+* {
+    /* Prevent any element from showing white background */
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Ensure viewport meta tag behavior */
+@viewport {
+    width: device-width;
+    zoom: 1.0;
+}
+
+/* Force consistent background on all major containers */
+section, main, nav, footer {
+    /* Ensure no white space shows through */
+    background-color: inherit;
+}
+
+/* Specific container background overrides */
+#authContainer {
+    background: linear-gradient(135deg, #3d5482 0%, #2d3a56 100%);
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+#topNavigation {
+    background: linear-gradient(135deg, #6f5b07 0%, #31a194 50%, #8e456a 100%);
+    width: 100%;
+    z-index: 1000;
+}
+
+#pageFooter {
+    background-color: #394359;
+    width: 100%;
+    margin-top: auto;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/* Additional footer centering */
+#pageFooter {
+    /* Force center alignment for all content */
+    justify-content: center !important;
+    align-items: center !important;
+    text-align: center !important;
+}
+
+#pageFooter * {
+    /* Ensure all child elements are centered */
+    text-align: center;
+}
+
+/* Footer content wrapper for better centering */
+.site-footer {
+    /* Add flex wrap for better responsive behavior */
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Ultimate fallback to prevent white space */
+html::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(135deg, #2d3a56 0%, #3d5482 100%);
+    z-index: -9999;
+    pointer-events: none;
+}
+
+/* Prevent any scrolling issues */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Standard viewport rule */
+@viewport {
+    width: device-width;
+    zoom: 1.0;
 }

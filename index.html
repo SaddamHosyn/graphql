@@ -7,6 +7,7 @@
     <script src="scripts/app.js" type="module" defer></script>
     <link rel="stylesheet" type="text/css" href="styles/auth.css" />
     <link rel="stylesheet" type="text/css" href="styles/global.css" />
+    <link rel="stylesheet" type="text/css" href="styles/charts.css" />
 
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
   </head>
@@ -39,7 +40,7 @@
 
    
     <!-- Navigation Header -->
-<nav id="topNavigation" class="navigation-bar" style="display: none">
+<nav id="topNavigation" class="navigation-bar hidden">
   <div class="nav-spacer"></div>
   <div class="nav-brand">
     <span class="brand-text">Study Verse</span>
@@ -52,7 +53,7 @@
 
 
     <!-- Main Dashboard -->
-    <main id="dashboardContainer" style="display: none">
+    <main id="dashboardContainer" class="hidden">
       <div id="singleDashboardBox" class="draggable-box">
         
         <!-- Two-by-Two Grid Container -->
@@ -100,7 +101,89 @@
       </div>
     </main>
 
-    <footer id="pageFooter" class="site-footer" style="display: none">
+    <!-- Chart Templates (Hidden) -->
+    <div id="chartTemplates" style="display: none;">
+      <!-- Generic Chart Container Template -->
+      <div class="chart-container template" id="chartContainerTemplate">
+        <div class="chart-title">Chart Title</div>
+        <div class="chart-wrapper">
+          <!-- Chart content (SVG) goes here -->
+        </div>
+        <div class="chart-legend">
+          <div class="legend-item">
+            <div class="legend-color" style="background-color: #4ECDC4;"></div>
+            <span>Legend Item 1</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-color" style="background-color: #FF6B9D;"></div>
+            <span>Legend Item 2</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Progress Chart Container Template -->
+      <div class="chart-container template" id="progressChartTemplate">
+        <div class="chart-title">XP Progress Journey</div>
+        <div class="chart-wrapper">
+          <!-- Progress chart SVG will be inserted here -->
+        </div>
+      </div>
+
+      <!-- Pie Chart Container Template -->
+      <div class="chart-container template" id="pieChartTemplate">
+        <div class="chart-title">Audit XP Distribution</div>
+        <div class="chart-wrapper">
+          <!-- Pie chart SVG will be inserted here -->
+        </div>
+      </div>
+
+      <!-- Bar Chart Container Template -->
+      <div class="chart-container template" id="barChartTemplate">
+        <div class="chart-title">Audit XP Comparison</div>
+        <div class="chart-wrapper">
+          <!-- Bar chart SVG will be inserted here -->
+        </div>
+      </div>
+
+      <!-- No Data Template -->
+      <div class="chart-container template" id="noDataTemplate">
+        <div class="no-data">No data available</div>
+      </div>
+
+      <!-- Profile Info Template -->
+      <div class="template" id="profileInfoTemplate">
+        <p>Full Name: <span class="profile-name"></span></p>
+        <p>Username: <span class="profile-username"></span></p>
+        <p>User ID: <span class="profile-id"></span></p>
+      </div>
+
+      <!-- Audit Info Template -->
+      <div class="template" id="auditInfoTemplate">
+        <p>Performance Ratio: <span class="audit-ratio"></span></p>
+        <p>Given Audit XP: <span class="audit-up"></span></p>
+        <p>Received Audit XP: <span class="audit-down"></span></p>
+      </div>
+
+      <!-- Audit Stats Template -->
+      <div class="template" id="auditStatsTemplate">
+        <p>Total Audits: <span class="total-audits"></span></p>
+        <p>Given: <span class="given-audits"></span></p>
+        <p>Received: <span class="received-audits"></span></p>
+      </div>
+
+      <!-- Experience Details Template -->
+      <div class="template" id="experienceTemplate">
+        <p>Total XP: <span class="total-xp"></span></p>
+      </div>
+
+      <!-- Audit Ratio Display Template -->
+      <div class="template" id="auditRatioTemplate">
+        <span class="ratio-value"></span>
+        <span class="ratio-label">Audit Ratio</span>
+      </div>
+    </div>
+
+    <footer id="pageFooter" class="site-footer hidden">
       &copy; 2025
       <a href="https://github.com/student-profile" target="_blank" rel="noopener">
         Profile Dashboard

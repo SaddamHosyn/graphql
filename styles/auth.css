@@ -1,7 +1,9 @@
 .auth-wrapper {
-    position: flex;
-    width: 102vw;
-    height: 90vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
     z-index: 10;
     background-color: #C8B2EA;
     background-image: url('/assets/vb.svg');
@@ -12,6 +14,8 @@
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    /* Prevent overscroll */
+    overscroll-behavior: none;
 }
 
 .login-card {
@@ -100,4 +104,28 @@
     gap: 3px;
     font-size: 14px;
     color: #ece6e6;
+}
+
+/* Login page specific styling */
+.auth-wrapper h1 {
+    color: #60A599;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.auth-wrapper label {
+    color: #60A599;
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.auth-wrapper .input-group {
+    color: #60A599;
+    margin-bottom: 1rem;
+}
+
+.auth-wrapper .toggle-password label {
+    color: #60A599;
+    font-size: 0.9rem;
 }

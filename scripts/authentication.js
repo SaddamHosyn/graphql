@@ -68,18 +68,14 @@ export function performLogout() {
 
 export function showDashboard() {
     console.log("Displaying dashboard");
-    document.getElementById('authContainer').style.display = 'none';
-    document.getElementById('topNavigation').style.display = 'flex';
-    document.getElementById('dashboardContainer').style.display = 'flex';
-    document.getElementById('pageFooter').hidden = false;
+    hideElements(['authContainer']);
+    showElements(['topNavigation', 'dashboardContainer', 'pageFooter']);
 }
 
 export function showAuthView() {
     console.log("Displaying authentication");
-    document.getElementById('authContainer').style.display = 'flex';
-    document.getElementById('topNavigation').style.display = 'none';
-    document.getElementById('dashboardContainer').style.display = 'none';
-    document.getElementById('pageFooter').hidden = true;
+    showElements(['authContainer']);
+    hideElements(['topNavigation', 'dashboardContainer', 'pageFooter']);
 }
 
 
@@ -101,3 +97,20 @@ export function initializePasswordToggle() {
 
 // Call this function when the page loads
 document.addEventListener('DOMContentLoaded', initializePasswordToggle);
+
+// Visibility utility functions
+function setVisibility(elementId, isVisible) {
+    const element = document.getElementById(elementId);
+    if (element) {
+        element.classList.toggle('hidden', !isVisible);
+        element.classList.toggle('visible', isVisible);
+    }
+}
+
+function showElements(elementIds) {
+    elementIds.forEach(id => setVisibility(id, true));
+}
+
+function hideElements(elementIds) {
+    elementIds.forEach(id => setVisibility(id, false));
+}

@@ -1,8 +1,49 @@
 import { loadUserData } from './dataService.js';
 import { generateProgressChart, generateBarChart, generatePieChart } from '../charts/visualization.js';
 
+// Template utility functions
+function useTemplate(templateId, data) {
+    const template = document.getElementById(templateId);
+    if (!template) {
+        console.warn(`Template ${templateId} not found`);
+        return '';
+    }
+    
+    const clone = template.cloneNode(true);
+    clone.classList.remove('template');
+    
+    // Populate template with data
+    Object.keys(data).forEach(key => {
+        const element = clone.querySelector(`.${key}`);
+        if (element) {
+            element.textContent = data[key];
+        }
+    });
+    
+    return clone.innerHTML;
+}
+
+function addVisibilityClasses() {
+    const elements = {
+        auth: document.getElementById('authContainer'),
+        navigation: document.getElementById('topNavigation'),
+        dashboard: document.getElementById('dashboardContainer'),
+        footer: document.getElementById('pageFooter')
+    };
+    
+    // Add utility classes for visibility control
+    Object.keys(elements).forEach(key => {
+        if (elements[key]) {
+            elements[key].classList.add(`${key}-container`);
+        }
+    });
+}
+
 export async function populateDashboard() {
     try {
+        // Initialize visibility classes
+        addVisibilityClasses();
+        
         const { profile, totalXP, xpHistory, auditData } = await loadUserData();
 
         renderProfileInfo(profile);
@@ -24,11 +65,11 @@ function renderProfileInfo(profileData) {
     if (!profileData) return;
 
     const profileContainer = document.getElementById('profileDetails');
-    profileContainer.innerHTML = `
-        <p>Full Name: ${profileData.firstName} ${profileData.lastName}</p>
-        <p>Username: ${profileData.login}</p>
-        <p>User ID: ${profileData.id}</p>
-    `;
+    profileContainer.innerHTML = useTemplate('profileInfoTemplate', {
+        'profile-name': `${profileData.firstName} ${profileData.lastName}`,
+        'profile-username': profileData.login,
+        'profile-id': profileData.id
+    });
 }
 
 function renderAuditInformation(profile, auditData) {
@@ -37,53 +78,35 @@ function renderAuditInformation(profile, auditData) {
 
     const formattedRatio = parseFloat(profile.auditRatio).toFixed(1);  
    
-    auditContainer.innerHTML = `
-        <p>Performance Ratio: ${formattedRatio}</p>
-        <p>Given Audit XP: ${profile.totalUp}</p>
-        <p>Received Audit XP: ${profile.totalDown}</p>
-    `;
+    auditContainer.innerHTML = useTemplate('auditInfoTemplate', {
+        'audit-ratio': formattedRatio,
+        'audit-up': profile.totalUp,
+        'audit-down': profile.totalDown
+    });
 
     const givenAudits = auditData.filter(t => t.type === 'up').length;
     const receivedAudits = auditData.filter(t => t.type === 'down').length;
     const totalAudits = givenAudits + receivedAudits;
 
-    auditStatsContainer.innerHTML = `
-        <p>Total Audits: ${totalAudits}</p>
-        <p>Given: ${givenAudits}</p>
-        <p>Received: ${receivedAudits}</p>
-    `
+    auditStatsContainer.innerHTML = useTemplate('auditStatsTemplate', {
+        'total-audits': totalAudits,
+        'given-audits': givenAudits,
+        'received-audits': receivedAudits
+    });
 }
 
 function renderExperienceTotal(totalXP) {
     const xpContainer = document.getElementById('experienceDetails');
-    xpContainer.innerHTML = `
-        <p>Total XP: ${totalXP}</p>
-    `;
+    xpContainer.innerHTML = useTemplate('experienceTemplate', {
+        'total-xp': totalXP
+    });
 }
 
 function renderProgressVisualization(xpHistory) {
     const chartContainer = document.getElementById('progressChart');
     if (!chartContainer) return;
     
-    // Generate the base chart SVG
-    let chartSVG = generateProgressChart(xpHistory);
-    
-    // Add gradient definition to the SVG
-    if (chartSVG.includes('<svg')) {
-        // Find the opening svg tag and add the gradient definition after it
-        const svgOpenTag = chartSVG.match(/<svg[^>]*>/)[0];
-        const gradientDefs = `
-            <defs>
-                <linearGradient id="progressGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                    <stop offset="0%" stop-color="#B79AE3" />
-                    <stop offset="50%" stop-color="#d41664" />
-                    <stop offset="100%" stop-color="#3d5482" />
-                </linearGradient>
-            </defs>`;
-        
-        chartSVG = chartSVG.replace(svgOpenTag, svgOpenTag + gradientDefs);
-    }
-    
+    const chartSVG = generateProgressChart(xpHistory);
     chartContainer.innerHTML = chartSVG;
     chartContainer.classList.add('progress-chart-wrapper');
 }
@@ -111,25 +134,25 @@ function renderAuditRatioDisplay(profile) {
             isNaN(Number(auditRatio)) ||
             Number(auditRatio) === 0
         ) {
-            ratioContainer.innerHTML = `
-                <span class="ratio-value ratio-na">N/A</span>
-                <span class="ratio-label">Audit Ratio</span>
-            `;
+            ratioContainer.innerHTML = useTemplate('auditRatioTemplate', {
+                'ratio-value': 'N/A'
+            });
             ratioContainer.classList.add('ratio-unavailable');
+            ratioContainer.querySelector('.ratio-value').classList.add('ratio-na');
         } else {
             const formattedRatio = Number(auditRatio).toFixed(1);
-            ratioContainer.innerHTML = `
-                <span class="ratio-value ratio-active">${formattedRatio}</span>
-                <span class="ratio-label">Audit Ratio</span>
-            `;
+            ratioContainer.innerHTML = useTemplate('auditRatioTemplate', {
+                'ratio-value': formattedRatio
+            });
             ratioContainer.classList.add('ratio-available');
+            ratioContainer.querySelector('.ratio-value').classList.add('ratio-active');
         }
     } catch (e) {
-        ratioContainer.innerHTML = `
-            <span class="ratio-value ratio-na">N/A</span>
-            <span class="ratio-label">Audit Ratio</span>
-        `;
+        ratioContainer.innerHTML = useTemplate('auditRatioTemplate', {
+            'ratio-value': 'N/A'
+        });
         ratioContainer.classList.add('ratio-error');
+        ratioContainer.querySelector('.ratio-value').classList.add('ratio-na');
     }
 }
 
