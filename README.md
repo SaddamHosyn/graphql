@@ -100,8 +100,8 @@ The application uses:
 
 ## API Endpoints
 
-- **Authentication**: `https://YOUR_DOMAIN/api/auth/signin`
-- **GraphQL**: `https://YOUR_DOMAIN/api/graphql-engine/v1/graphql`
+- **Authentication**: `'https://01.gritlab.ax/api/auth/signin'`
+- **GraphQL**: `https://01.gritlab.ax/api/graphql-engine/v1/graphql'`
 
 ## Browser Support
 
