@@ -29,7 +29,7 @@ async function authenticateUser(encodedAuth, errorDisplay) {
         });
 
         if (!response.ok) {
-            if (response.status === 401) {
+            if (response.status === 401 || response.status === 403) {
                 errorDisplay.textContent = 'Authentication failed. Check your credentials.';
             } else if (response.status >= 500) {
                 errorDisplay.textContent = 'Server unavailable. Try again later.';

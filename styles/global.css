@@ -1030,13 +1030,54 @@ html::before {
     pointer-events: none;
 }
 
-/* Prevent any scrolling issues */
-html {
-    scroll-behavior: smooth;
+/* GraphQL Demo Section Styling */
+#graphqlDemoSection {
+    border: 2px solid #4ECDC4;
+    border-radius: 12px;
+    padding: 15px;
+    background: linear-gradient(135deg, #2d3a56 0%, #3d5482 100%);
+    margin-top: 20px;
 }
 
-/* Standard viewport rule */
-@viewport {
-    width: device-width;
-    zoom: 1.0;
+#graphqlDemoSection h3 {
+    color: #4ECDC4 !important;
+    margin-bottom: 10px;
 }
+
+#testQueriesBtn {
+    background: linear-gradient(135deg, #4ECDC4 0%, #44A08D 100%);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+#testQueriesBtn:hover {
+    background: linear-gradient(135deg, #44A08D 0%, #4ECDC4 100%);
+    transform: translateY(-2px);
+}
+
+#testQueriesBtn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+#queryStatus {
+    font-weight: bold;
+    color: #FFE66D;
+}
+
+#queryResults {
+    max-height: 300px;
+    overflow-y: auto;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+/* Prevent any scrolling issues */
