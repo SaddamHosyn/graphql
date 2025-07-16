@@ -100,7 +100,7 @@ export async function loadUserByIdWithTransactions(userId) {
 
 
 
-// NEW: Enhanced function to perform queries with variables
+//  function to perform queries with variables
 async function performQueryWithVariables(query, variables, authToken) {
     try {
         const response = await fetch('https://01.gritlab.ax/api/graphql-engine/v1/graphql', {
